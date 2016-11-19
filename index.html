@@ -1,90 +1,90 @@
-<BODY>
-  <SCRIPT LANGUAGE="JavaScript">
-    //Í¼Æ¬µÄ¹ı³ÌÖĞ£¬ºá×ø±êµÄ¹ì¼£ÊÇÒÔÒ»µãÎªÖĞĞÄµÄÕıÏÒÇúÏß
-    //ÀûÓÃÁËsetTimeoutº¯ÊıÍê³ÉÁË¶¯»­µÄ¹¦ÄÜ
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>My Blog</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.wrap{
+			width: 100%;
+			height: 560px;
+		}
+		.header{
+			width: 100%;
+			height: 150px;
+			border-bottom: 2px solid blue;
+		}
+		.header > h1{
+			text-align: center;
+			margin-top: 50px;
+		}
+		.content{
+			width: 100%;
+			height: 360px;
 
+		}
+		.footer{
+			width: 100%;
+			height: 50px;
+			border-top:2px solid red; 
+		}
+		#left{
+			float: left;
+			width: 20%;
+			height: 360px;
+			border-right: 2px solid yellow;
+		}
+		li{
+			margin:70px;
+			list-style: none;
 
-    //Í¼Æ¬
-    var snowsrc="sn.png"
-    //Ñ©»¨¸öÊı
-    var no = 10; 
-    //ÉùÃ÷±äÁ¿£¬xp±íÊ¾ºá×ø±ê£¬yp±íÊ¾×İ×ø±ê>
-    var dx, xp, yp;
-    //ÉùÃ÷±äÁ¿£¬am±íÊ¾×óÓÒ°Ú¶¯µÄ·ù¶È£¬stx±íÊ¾ºá×ø±êµÄÆ«ÒÆ²½³¤£¬sty±íÊ¾×İ×ø±êµÄ²½³¤>
-    var am, stx, sty;  
-      
-    {
-      //»ñÈ¡µ±Ç°´°¿ÚµÄ¿í¶È
-      clientWidth = document.body.clientWidth;
-      //»ñÈ¡µ±Ç°´°¿ÚµÄ¸ß¶È
-      clientHeight = document.body.clientHeight;
-    }
+		}
+		#right{
+			float: left;
+			width: 79%;
+			height: 360px;
+			position: relative;
+		}
+		#right_center{
+			width: 120px;
+			height: 100px;
+			position: absolute;
+			left: 350px;
+			top: 100px;
+		}
 
-    var dx = new Array();
-    var xp = new Array();
-    var yp = new Array();
-    var am = new Array();
-    var stx = new Array();
-    var sty = new Array();
-    var snowFlakes = new Array();
-
-    for (i = 0; i < no; ++ i) {  
-      
-      dx[i] = 0;                        
-      //µÚi¸öÍ¼Æ¬µÄºá×ø±ê³õÊ¼Öµ
-      xp[i] = Math.random()*(clientWidth-50);  
-      yp[i] = Math.random()*clientHeight;//µÚi¸öÍ¼Æ¬µÄ×İ×ø±ê³õÊ¼Öµ
-      am[i] = Math.random()*20;         //µÚi¸öÍ¼Æ¬µÄ×óÓÒ°Ú¶¯µÄ·ù¶È
-      stx[i] = 0.02 + Math.random()/10; //µÚi¸öÍ¼Æ¬x·½ÏòµÄ²½³¤
-      sty[i] = 0.7 + Math.random();     //µÚi¸öÍ¼Æ¬y·½ÏòµÄ²½³¤
-
-      //Éú³ÉÒ»¸öÈİÄÉÑ©»¨Í¼Æ¬µÄdiv£¬²¢ÉèÖÃÆä¾ø¶Ô×ø±ê
-      var snowFlakeDiv = document.createElement('div');
-      snowFlakeDiv.setAttribute('id', 'dot'+ i);
-      snowFlakeDiv.style.position = 'absolute';
-      snowFlakeDiv.style.top = 15;
-      snowFlakeDiv.style.left = 15;
-
-      //Éú³ÉÒ»¸öÑ©»¨Í¼Æ¬¶ÔÏó£¬ÉèÖÃ¿í¸ß£¬²¢¼ÓÈëdiv
-      var snowFlakeImg = document.createElement('img');
-      snowFlakeImg.setAttribute('src', snowsrc);
-      snowFlakeImg.style.width = 30;
-      snowFlakeImg.style.height = 30;
-
-      //½«Ñ©»¨div¼ÓÈëµ½documentÖĞ£¬²¢Í¨¹ıÊı×é±£´æ
-      snowFlakeDiv.appendChild(snowFlakeImg);
-      document.body.appendChild(snowFlakeDiv);
-      snowFlakes[i] = snowFlakeDiv;
-    }
-
-
-    function snow() {  
-      for (i = 0; i < no; ++ i) {  
-        //µÚi¸öÍ¼Æ¬µÄ×İ×ø±ê¼ÓÉÏ²½³¤
-        yp[i] += sty[i];
-
-        //Èç¹ûĞÂ×ø±ê³¬¹ıÁËÆÁÄ»ÏÂÑØ£¬ÖØÖÃ¸ÃÍ¼Æ¬µÄĞÅÏ¢£¬°üÀ¨ºá×ø±ê¡¢×İ×ø±êÒÔ¼°x·½ÏòµÄ²½³¤ºÍy·½ÏòµÄ²½³¤
-        if (yp[i] > clientHeight-50) {
-          //ÖØĞÂ¸³ÖµÍ¼Æ¬µÄºá×ø±ê
-          xp[i] = Math.random()*(clientWidth-am[i]-30);
-          //ÖØĞÂ¸³ÖµÍ¼Æ¬µÄ×İ×ø±ê
-          yp[i] = 0;
-        }
-
-        dx[i] += stx[i];//dx±äÁ¿¼ÓÉÏÒ»¸ö²½³¤
-        //Ö±½Ó²Ù×÷Êı×éÖĞ¶ÔÓ¦µÄÑ©»¨div
-        var snowFlakeDiv = snowFlakes[i];
-        //¸üĞÂÍ¼Æ¬µÄ×İ×ø±ê
-        snowFlakeDiv.style.top = yp[i];
-        //¸üĞÂÍ¼Æ¬µÄºá×ø±ê
-        snowFlakeDiv.style.left = xp[i] + am[i]*Math.sin(dx[i]);
-      }
-
-      //Éè¶¨¶¯»­Ë¢ĞÂµÄÊ±¼äÖÜÆÚ
-      setTimeout("snow()", 10);
-    }
-
-    //µ÷ÓÃsnowIE()º¯Êı 
-    snow();
-  </script>
-</BODY>
+		.footer > p{
+			text-align: center;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="header">
+			<h1>æˆ‘çš„åšå®¢</h1>
+		</div>
+		<div class="content">
+			<div id="left">
+				<ul>
+					<li>1.</li>
+					<li>2.<a href="puzzle.html">å°æ‹¼å›¾</a></li>
+					<li>3.</li>
+				</ul>
+			</div>
+			<div id="right">
+				<div id="right_center">
+					<p>å‘ƒï¼Œè¿™äººå¾ˆæ‡’ï¼Œä»€ä¹ˆéƒ½æ²¡ç•™ä¸‹ã€‚</p>
+				</div>	
+			</div>
+		</div>
+		<div class="footer">
+			<p>copyright: lalala</p>
+		</div>
+	</div>
+</body>
+</html>
