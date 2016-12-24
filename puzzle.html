@@ -2,7 +2,7 @@
 
 <head>
 	<meta charset="UTF-8">
-	<title>少了一些bug的小拼图</title>
+	<title>Puzzles of Alrale</title>
 	<meta name="viewport" id="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
 	<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.3.2.min.css">
 	<script src="js/jquery-1.9.1.min.js"></script>
@@ -20,14 +20,11 @@
 			color: #f877c9;
 			margin-bottom: 10px;
 		}
-		p{
-			font-size: 14px;
-		}
 
 		#picbox {
 			width: 220px;
 			height: 220px;
-			background-image: url('images/a.jpg');			
+			background: url('images/Alrale2.jpg') no-repeat;			
 			position: relative;
 			margin: 50px auto;
 		}
@@ -36,7 +33,7 @@
 			width: 73px;
 			height: 73px;
 			float: left;
-			background-image: url('images/a.jpg');
+			background: url('images/Alrale2.jpg') no-repeat;
 			position: absolute;
 			transition: all 0.5s ease 0s;
 		}
@@ -45,23 +42,45 @@
 			text-align: center;
 			position: relative;
 		}
-		
-		#times {
+		.changeOn1{
+			width: 30%;
+			height: 20%;
+			z-index: 2;
+			margin: 0 auto;
+			display: block;
+			color: #D187C7;
+			border: 2px solid #F9B7E0;
+			border-radius: 6px; 
+			pointer-events: none;
 			position: absolute;
-			color: red;
-			top: 15px;
-			left: 300px;
-			font-size: 20px;
+			left:34%;
+			top: 100%;			
+		}
+		.changeOn2{
+			width: 30%;
+			height: 20%;
+			z-index: 1;
+			margin: 0 auto;
+			display: none;
+			border: 2px solid #D1D1D1;
+			border-radius: 6px; 
+			color: #D1D1D1;
+			pointer-events: none;
+			position: absolute;
+			left:34%;
+			top: 100%;
 		}
 	</style>
 </head>
 
 <body>
 	<div class='controller'>
-		<h1>少了一些bug的小拼图</h1>
-		<p>（tips:用系统自带浏览器打开可少掉一些bug）</p>
-		<a data-role="button" href="#" data-inline="true" id="go">开始</a>
-		<a data-role="button" href="#" data-inline="true" id="a">重新载入</a>
+		<h1>阿拉蕾小拼图</h1>		
+		<a data-role="button" href="#" data-inline="true" id="start">开始</a>
+		<a data-role="button" href="#" data-inline="true" id="flush">重新载入</a>
+			<div class="changeOn1">换张图吧</div>
+			<div class="changeOn2">换不了了</div>
+		<!-- <span id='times'></span> -->
 	</div>
 	<div id='picbox'>
 		<div class="pic" data-index='0' style='background-position:0px 0px;left:0px;top:0px;'></div>
@@ -77,40 +96,96 @@
 	<script>
 		var picbox = document.getElementById('picbox');
 		//querySelector返回的是一个对象，querySelectorAll返回的一个集合(NodeList)
-		var pic = document.querySelectorAll('.pic'); 
+		var pic = document.querySelectorAll('.pic');
+		//各种变量
 		var picWidth = pic[0].offsetWidth;
 		var picHeight = pic[0].offsetHeight;
 		var picboxWidth = picbox.offsetWidth;
-		var picboxHeight = picbox.offsetHeight;
-		var go = document.querySelector('#go');
-		//var times = document.querySelector('#times');
+		var picboxHeight = picbox.offsetHeight;		
 		var dx, dy, newLeft, newtop, startTime, endTime;
+		//var times = document.querySelector('#times');
+		
+		var start = document.querySelector('#start');               //开始按钮
+		var flush = document.getElementById("flush");               //刷新按钮
+        var changeOn = document.getElementsByClassName("changeOn1");   //换图按钮1	
+        var changeOn2 = document.getElementsByClassName("changeOn2");   //换图按钮2	
+      
+      	var bool = "visiblePainted";              //true为visiblePainted   ，  false为none
+        var curRan = 2;							  //当前的图片Alrale2.jpg
+        var ran1 = Math.floor(Math.random()*6);
+        var ran2 = Math.floor(Math.random()*6);
 
-		var a = document.getElementById("a");
+        /*刷新的次数*/
+        function flush_count(){
+        	if(window.name==""){ 
+				window.name = "0"; 
+			} 
+			else{ 
+				window.name = eval(window.name) + 1; 
+				console.log("已经刷新"+ window.name+'次'); 
+			}
+			if(eval(window.name)>=1){
+				changeOn[0].style.pointerEvents = 'visiblePainted';
+				for(var i = 0; i < pic.length; i++) {
+						picbox.style.backgroundImage = "url(images/Alrale"+ran2+".jpg)";   	
+				 		pic[i].style.backgroundImage = "url(images/Alrale"+ran2+".jpg)";   			
+				}
+				//console.log(ran2);
+			} 
+        }
+        flush_count();
 
-		a.addEventListener('touchstart',function(){
+        /*封装改变状态*/
+        function changeState(){
+        	changeOn[0].style.pointerEvents = 'none';
+			changeOn[0].style.zIndex = 0;
+			changeOn[0].style.display = 'none';
+			changeOn2[0].style.display = 'block';
+        }
+
+        //刷新按钮
+		flush.addEventListener('touchstart',function(){
 		
 			window.location.reload();
 		
-		});
+		});	
+		
+        //换图按钮
+		changeOn[0].addEventListener('touchstart',function(){			
+			for(var i = 0; i < pic.length; i++) {				 
+				 		if(ran1!=ran2){
+				 			pic[i].style.backgroundImage = "url(images/Alrale"+ran1+".jpg)";   
+				 		}else if(ran1>0){
+				 		    pic[i].style.backgroundImage = "url(images/Alrale"+(--ran1)+".jpg)";   
+				 		}else{
+				 			pic[i].style.backgroundImage = "url(images/Alrale"+(++ran1)+".jpg)";  
+				 		}
+				 		//console.log(ran1+","+ran2);		 	 					
+				}
+					changeState();
+		});	
+		
 		//单击按钮开始      
-		go.addEventListener('touchstart', function() {
-					startGame();
-					for(var i = 0; i < pic.length; i++) {
+		start.addEventListener('touchstart', function() {
+			        startGame();
+			        //changeOn[0].className = "changeOn2";
+					//startTime = Date.parse(new Date());
+					for(var i = 0; i < pic.length; i++) {						
 						pic[i].style.display = "block";
-						picbox.style.background = "#fff";               //White
+						picbox.style.background = "#fff";               //White						
 						for(var i = 0; i < 20; i++) {
 							var a = Math.floor(Math.random() * 9);      //0-8
-							var b = Math.floor(Math.random() * 9);
-							//console.log(a);
+							var b = Math.floor(Math.random() * 9);							
 							if(a != b) {
 								random(a, b);
 							}
 						}
 					}
-					});
+					changeState();
+					changeOn2[0].innerHTML = "已经开始了";
+				});
 		
-     function startGame(){
+                function startGame(){
 				for(var i = 0; i < pic.length; i++) {
 					pic[i].addEventListener('touchstart', function(e) {
 						this.style.zIndex = 100;
@@ -161,31 +236,27 @@
 						if(isSuccess()) {
 							//console.log('成功了！');
 							var suc = document.createElement('div');
-							//var vec = document.createElement('p');
-							suc.style.cssText = 'position:absolute;z-index:9999999;top:30%;width:100%;text-align:center;font-size:60px;color:#F56200;font-family:arial,黑体;';
-							suc.innerHTML = '过关啦!';
-			                //suc.appendChild(vec);
+							suc.style.cssText = 'position:absolute;z-index:9999999;top:20%;width:100%;text-align:center;font-size:60px;color:#E383FC;font-family:arial,黑体;';
+							suc.innerHTML = '阿拉蕾过关啦!';
 			                picbox.appendChild(suc);
 			                var t = 3;
 			                var timer = null;
 			                function updateTime(){			               
-			                t--;			                			               			                
+			                t--;			                			               		                
 			                timer = setInterval(function(){
 			                	updateTime();
 			                },1000);
 			                if(t<0){
 			                	clearInterval(timer);
-			                	window.location.reload();
+			                	window.location.reload();			           			                	
 			                }
 			               }
 			                updateTime();
-
-						} else {
-							pic[i].removeEventListener('transitionend');
 						}
-					});
+					});					
 				}
-}
+				}
+
 				function change(obj, x, y) {
 					for(var i = 0; i < pic.length; i++) {
 						if(Math.abs(pic[i].offsetLeft - x) <= picWidth / 2 && Math.abs(pic[i].offsetTop - y) <= picHeight / 2 && pic[i] != obj) return pic[i];
@@ -226,10 +297,6 @@
 					}
 					return false;
 				}
-				/*var time; setInterval(function() {
-					endTime = Date.parse(new Date());
-					times.innerHTML = (endTime - startTime) / 1000 || '';
-				}, 1000);*/
 	</script>
 </body>
 
