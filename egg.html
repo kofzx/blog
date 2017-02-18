@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>egg</title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#main{
+				width: 95%;
+				height:800px;
+				padding-top: 10%;
+				margin:0 auto;
+				position: relative;
+			}
+			.pic{
+				height: 500px;
+				margin-top:13% ;
+			}
+			ul{
+				margin-left: 3.5%;
+				margin-top: 8%;
+			}
+			ul li{
+				float: left;
+				list-style: none;
+				padding-left: 3%
+			}
+			p{
+				font-size: 45px;
+				text-align: center;
+				padding-bottom: 2%;
+			}
+			#title{
+				color: #f631a0;
+			}
+			#try_again{
+				color: #5b37f6;
+				text-align: center;
+			    border: 1px solid red; 
+			}
+			.hide{
+				width: 250px;
+				height: 250px;
+				display: none;
+				/* border: 1px solid blue; */
+				position: absolute;
+				z-index: 999;
+			}
+		</style>
+		<script src="js/jquery-2.1.0.js"></script>
+	</head>
+	<body>
+		<div id="main">
+			<div class="pic">
+				<p id="title">猜猜看爱心蛋放在哪支鞋子里？</p>
+				<ul>
+					<li><div class="hide"></div><img width="250" height="250" onclick="isRight(0);checkClick();" src="images/shoe.jpg"/></li>
+					<li><div class="hide"></div><img width="250" height="250" onclick="isRight(1);checkClick();" src="images/shoe.jpg"/></li>
+					<li><div class="hide"></div><img width="250" height="250" onclick="isRight(2);checkClick();" src="images/shoe.jpg"/></li>
+				</ul>
+			</div>
+			<p id="try_again" onclick="tryAgain()">再试一次</p>
+		</div>
+		<script>
+			var arr = new Array();
+			arr = ['images/shoe_egg.jpg','images/shoe.jpg','images/shoe.jpg'];
+						 //shoe_egg is correct ,  shoe is defeat
+			var img01 = document.getElementsByTagName('img')[0];
+			var img02 = document.getElementsByTagName('img')[1];
+			var img03 = document.getElementsByTagName('img')[2];
+			
+			var isClick = true;
+			var life = true;
+			/*核心函数*/
+			function reset(){
+				for(var i = 0; i<3; i++){					
+					var index = Math.floor(Math.random()*2);
+					
+					var temp = arr[i];
+					arr[i] = arr[index];		//arr[i]跟arr[index]互换
+					arr[index] = temp;					
+					//console.log(arr[i]);
+				}				
+			}
+			function isRight(index){
+				reset();
+				//console.log(arr);		//arr已经随机过了
+				img01.src = arr[0];
+				img02.src = arr[1];
+				img03.src = arr[2];								
+				
+				if(arr[index] == 'images/shoe_egg.jpg'){
+					$('p').eq(0).text("猜对了!");
+					$('p').eq(0).css({
+						color:'green'
+				});
+				}
+				else{
+					$('p').eq(0).text("抱歉，再猜猜看吧。。。");
+					$('p').eq(0).css({
+						color:'#ab283b'
+					});
+				}
+					life = false;
+				if(!life){
+					$('div').eq(2).css({display:'block'});
+					$('div').eq(3).css({display:'block'});
+					$('div').eq(4).css({display:'block'});
+					//$('hide').css({display:'block'});
+				}				
+			}
+			function checkClick(fun){				
+				if(isClick){
+					for(var i = 0; i<3; i++){
+						$('img').eq(i).css({
+							//transition:'opacity 2s',
+							opacity:0.4
+						});			//使单击的图片变得透明		
+					}			
+				}
+				//isClick = false;
+				console.log(isClick);
+			}			
+			var changeFlag = function(){
+				this.isClick = isClick;
+				if(this.isClick)
+					this.isClick = false;
+				else
+					this.isClick = true;
+				isClick = this.isClick;
+			};	
+			function tryAgain(){
+				$('div').eq(2).css({display:'none'});
+				$('div').eq(3).css({display:'none'});
+				$('div').eq(4).css({display:'none'});
+
+				for(var i = 0; i<3; i++){
+						$('img').eq(i).css({opacity:1});				
+					}		
+			}		
+		</script>
+	</body>
+</html>
