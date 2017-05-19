@@ -29,6 +29,11 @@
             height:50%;
             font-size: 35px;
         }
+		p{
+			text-align:center;
+			color:green;
+			font-size: 35px;
+		}
     </style>
     <script src="js/jquery-3.0.0.min.js"></script>
 </head>
@@ -40,6 +45,7 @@
         <input type="text" name="check" id="check" />
         <button id="send">确定</button>
     </div>
+	<p id="msg"></p>
     <script>
         var canvas = document.getElementById('canvas');
         var ctx = canvas.getContext('2d');
@@ -164,7 +170,9 @@
 				$data = ranObj[0]+""+ranObj[1]+""+ranObj[2]+""+ranObj[3];
 				$check = $("#check").val();
 				if($data==$check){
-					alert("vectory!");
+					$("#msg").html("vectory!");
+				}else{
+					$("#msg").html("");
 				}
             });
         });
