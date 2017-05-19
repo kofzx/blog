@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -141,7 +141,7 @@
         $(document).ready(function() {
             //$("#check").blur(function(){
             $("#send").click(function(){
-                $.ajax({
+                /*$.ajax({
                     type: 'GET',
                     url: "check.php",
                     data: {
@@ -160,7 +160,12 @@
 						}
                     },
                     dataType: "json"
-                });
+                });*/
+				$data = ranObj[0]+""+ranObj[1]+""+ranObj[2]+""+ranObj[3];
+				$check = $("#check").val();
+				if($data==$check){
+					alert("vectory!");
+				}
             });
         });
     </script>
