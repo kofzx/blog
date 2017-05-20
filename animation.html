@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>myAnimation</title>
+    <style>
+        body{
+            background-color: mistyrose;
+        }
+        #envelope{
+            width: 1024px;
+            height: 688px;
+            display: none;
+            background: url("images/envelope.jpg") no-repeat;
+            background-size: 90% 95%;
+            position: absolute;
+            left: 15%;
+            top: 15%;
+        }
+        .bird{
+            width: 240px;
+            height: 200px;
+            background: url("images/bird_ok_2.png");
+            position: absolute;
+            left: 0%;
+            top: 10%;
+           /* background-size: 200% 200%;*/
+        }
+        .birdFly{
+            animation: bird-fly 0.4s steps(1) infinite;
+        }
+        @keyframes bird-fly {
+            0%{background-position: 0% 0%;}
+            25%{background-position: 0% 0%;}
+            50%{background-position: -221px 0%;}
+            75%{background-position: 0% -220px;}
+            100%{background-position: -221px -220px;}
+        }
+        .env{
+            width: 70px;
+            height: 61px;
+            display: none;
+            background: url("images/little_env_3.png");
+            position: absolute;
+            left: 45%;
+            top: 23%;
+        }
+        .text{
+            width: 600px;
+            height: 450px;
+            overflow: hidden;
+            font-size: 40px;
+            position: absolute;
+            left: 34%;
+            top: 25%;
+            /*z-index: 100;*/
+        }
+        .first{
+            opacity: 0;
+            animation: text-fade 5s 12s 1 forwards;
+        }
+        .second{
+            opacity: 0;
+            animation: text-fade 5s 17s 1 forwards;
+        }
+        .third{
+            opacity: 0;
+            animation: text-fade 5s 22s 1 forwards;
+        }
+        .fourth{
+            opacity: 0;
+            animation: text-fade 5s 27s 1 forwards;
+        }
+        .fifth{
+            opacity: 0;
+            animation: text-fade 5s 32s 1 forwards;
+        }
+        .sixth{
+            opacity: 0;
+            animation: text-fade 5s 37s 1 forwards;
+        }
+        @keyframes text-fade {
+            0%{opacity: 0}
+            100%{opacity: 1}
+        }
+    </style>
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="js/jquery.transit.js"></script>
+</head>
+<body>
+    <div id="print">
+        <div id="envelope"></div>
+        <div class="bird birdFly"></div>
+        <div class="env"></div>
+        <div class="text">
+            <p style=" text-indent: 2em;" class="first">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            <p class="second">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            <p class="third">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            <!--<p class="fourth">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            <p class="fifth">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>
+            <p class="sixth">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</p>-->
+        </div>
+    </div>
+    <script>
+        $(".bird").transition({
+            'left':"450px"
+        },5000,'linear',function(){
+            $(".env").fadeIn(2000);
+            $(".env").transition({
+                'top':"300px"
+            },2000,'linear',function(){
+                $("#envelope").fadeIn(3000,function(){
+                    $(".text").fadeIn(2000);
+                });
+                $(".env").fadeOut(2500);
+            });
+            $(".bird").fadeOut(2000);
+        });
+    </script>
+</body>
+</html>
