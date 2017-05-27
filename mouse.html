@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #main{
+            width: 1000px;
+            height: 800px;
+            background: url("images/bg.jpg") no-repeat;
+            background-size: 100% 100%;
+            position: relative;
+        }
+        .score{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            font-size: 30px;
+            text-align: center;
+            line-height:30px;
+            position: absolute;
+            left: 20%;
+            top: 10%;
+        }
+        .countdown{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            font-size: 30px;
+            text-align: center;
+            line-height:30px;
+            position: absolute;
+            left: 80%;
+            top: 10%;
+        }
+        .mouse1{
+            width: 100px;
+            height: 200px;
+            background: url("images/awei.png") no-repeat;
+            display: none;
+            position: absolute;
+        }
+        .mouse2{
+            width: 100px;
+            height: 200px;
+            background: url("images/mouse_ok5.png") no-repeat;
+            display: none;
+            position: absolute;
+        }
+        .mouse3{
+            width: 100px;
+            height: 200px;
+            background: url("images/mouse_ok5.png") no-repeat;
+            display: none;
+            position: absolute;
+        }
+      /*  .active{
+            animation: mouse-up 1.5s 1;
+            !*animation-play-state:paused;*!
+        }
+        @keyframes mouse-up {
+            0%{background-position-y: 300px}
+            100%{background-position-y: 0px}
+        }
+        .negative{
+            animation: mouse-down 1.5s 1;
+        }
+        @keyframes mouse-down {
+            0%{background-position-y: 0px}
+            100%{background-position-y: 300px}
+        }
+        .active2{
+            animation: mouse-up 2s 1;
+        }
+        @keyframes mouse-up {
+            0%{background-position-y: 300px}
+            100%{background-position-y: 0px}
+        }
+        .negative2{
+            animation: mouse-down 2s 1;
+        }
+        @keyframes mouse-down {
+            0%{background-position-y: 0px}
+            100%{background-position-y: 300px}
+        }
+        .active3{
+            animation: mouse-up 1.25s 1;
+        }
+        @keyframes mouse-up {
+            0%{background-position-y: 300px}
+            100%{background-position-y: 0px}
+        }
+        .negative3{
+            animation: mouse-down 1.25s 1;
+        }
+        @keyframes mouse-down {
+            0%{background-position-y: 0px}
+            100%{background-position-y: 300px}
+        }*/
+    </style>
+    <style>
+        @media screen and (max-width: 1200px) {
+            #main{
+                width: 1000px;
+                height: 1600px;
+                background: url("images/bg.jpg") no-repeat;
+                background-size: 100% 100%;
+                position: relative;
+            }
+            .score{
+                width: 100px;
+                height: 100px;
+                border: 1px solid red;
+                font-size: 30px;
+                text-align: center;
+                line-height:30px;
+                position: absolute;
+                left: 20%;
+                top: 10%;
+            }
+            .countdown{
+                width: 100px;
+                height: 100px;
+                border: 1px solid red;
+                font-size: 30px;
+                text-align: center;
+                line-height:30px;
+                position: absolute;
+                left: 80%;
+                top: 10%;
+            }
+            .mouse1{
+                width: 100px;
+                height: 200px;
+                background: url("images/awei.png") no-repeat;
+                display: none;
+                position: absolute;
+            }
+            .mouse2{
+                width: 100px;
+                height: 200px;
+                background: url("images/mouse_ok5.png") no-repeat;
+                display: none;
+                position: absolute;
+            }
+            .mouse3{
+                width: 100px;
+                height: 200px;
+                background: url("images/mouse_ok5.png") no-repeat;
+                display: none;
+                position: absolute;
+            }
+        }
+    </style>
+    <script src="js/jquery-2.1.0.js"></script>
+    <script src="js/jquery.transit.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div class="score"></div>
+        <div class="countdown"></div>
+        <div class="mouse1"></div>
+        <div class="mouse2"></div>
+        <div class="mouse3"></div>
+    </div>
+    <script>
+        var main = document.getElementById('main');
+        var pos = new Array();
+        var imgSrc = new Array();
+        pos = [[330,75],[506,75],[698,75],[240,245],[425,245],[588,245],[167,410],[344,410],[517,410]];
+        imgSrc = ["images/.jpg","images/mouse3.jpg","images/mouse4.jpg","images/mouse5.jpg","images/mouse6.jpg","images/mouse7.jpg"];
+        var flag = true;
+        var a, b, c;
+        var sum = 0;
+        var t = 60;
+        function changeURL2(){
+            $(".mouse2").css({'background-image':"url("+imgSrc[Math.floor(Math.random()*imgSrc.length)]+")"});
+        }
+        function changeURL3(){
+            $(".mouse3").css({'background-image':"url("+imgSrc[Math.floor(Math.random()*imgSrc.length)]+")"});
+        }
+        var change_url2 = setInterval('changeURL2()',3600);
+        var change_url3 = setInterval('changeURL3()',2800);
+
+        function create(){
+            var div = document.createElement('div');
+            var cssStr = "width:300px;height:300px;border:1px solid red; position: absolute;left:300px;top:300px;z-index:100;text-align:center;font-size:30px;";
+            div.style.cssText = cssStr;
+            div.innerHTML = "Vectory!";
+            main.appendChild(div);
+        }
+        var timer = setInterval(function(){
+            if(t<=0){
+                create();
+                clearInterval(timer);
+            }
+            $(".countdown").html(t--);
+        },1000);
+
+        function init(){
+            a = ran();
+            b = ran();
+            c = ran();
+        }
+        function ranAgain(){
+            do{
+                init();
+            }
+            while(a==b || a==c || b==c);
+            //console.log(a,b,c);
+        }
+        function ran(){
+            var ran = Math.floor(Math.random()*pos.length);
+            return ran;
+        }
+        /*function ranTime(){
+            var ranTime = Math.random()*4000+2000;
+            return ranTime;
+        }*/
+        function cssMove(i,ran){
+            $(".mouse"+i).css({'display':"none"});
+            $(".mouse"+i).css({'left':pos[ran][0]+"px",'top':pos[ran][1]+"px"});
+            $(".mouse"+i).css({'background-position-x':"0px"});
+            $(".mouse"+i).css({'display':"block"});
+        }
+        function mouseClick(i,flag){
+            if(flag) {
+                $(".mouse"+i).css({'background-position-x': "-100px"});
+                //$(".mouse"+i).transition({'background-position-y':"300px"},700,'linear');
+                //$(".mouse"+i).css({'display':"none"});
+                setTimeout(function(){
+                    $(".mouse"+i).css({'background-position-x':"-200px"});
+                    $(".mouse"+i).css({'display':"none"});
+                },100);
+                sum += i*10;
+                $(".score").text(sum);
+                flag = false;
+            }
+        }
+        var ran_again = setInterval('ranAgain()',2299);
+
+        var flag_11 = true;
+        function Mouse1(){
+            this.flag = flag;
+        }
+        Mouse1.prototype.move = function(ran){
+            flag_11 = true;
+            this.flag = true;
+            cssMove(1,ran);
+            this.up();
+            setTimeout(this.down,1300);
+            //console.log(this.flag);
+        };
+        Mouse1.prototype.up = function(){
+            //$(".mouse1").removeClass("negative");
+            //$(".mouse1").addClass("active");
+            $(".mouse1").css({'background-position-y':"300px"});
+            $(".mouse1").transition({'background-position-y':"0"},800,'linear');
+        };
+        Mouse1.prototype.down = function(){
+            //$(".mouse1").removeClass("active");
+            //$(".mouse1").addClass("negative");
+            $(".mouse1").transition({'background-position-y':"300px"},300,'linear',function(){flag_11=false});
+        };
+        var mouse1 = new Mouse1();
+        var st = setInterval('mouse1.move(a)',10000);
+
+        function Mouse2(){
+            this.flag = flag;
+        }
+        Mouse2.prototype.move = function(ran){
+            flag_11 = true;
+            this.flag = true;
+            cssMove(2,ran);
+            this.up();
+            setTimeout(this.down,2000);
+        };
+        Mouse2.prototype.up = function(){
+            //$(".mouse2").removeClass("negative2");
+            //$(".mouse2").addClass("active2");
+            $(".mouse2").css({'background-position-y':"300px"});
+            $(".mouse2").transition({'background-position-y':"0"},1500,'linear');
+        };
+        Mouse2.prototype.down = function(){
+            //$(".mouse2").removeClass("active2");
+            //$(".mouse2").addClass("negative2");
+            $(".mouse2").transition({'background-position-y':"300px"},1500,'linear',function(){flag_11=false});
+        };
+        var mouse2 = new Mouse2();
+        var st2 = setInterval('mouse2.move(b)',3600);
+
+        function Mouse3(){
+            this.flag = flag;
+        }
+        Mouse3.prototype.move = function(ran){
+            flag_11 = true;
+            this.flag = true;
+            cssMove(3,ran);
+            this.up();
+            setTimeout(this.down,1500);
+        };
+        Mouse3.prototype.up = function(){
+            //$(".mouse3").removeClass("negative3");
+            //$(".mouse3").addClass("active3");
+            $(".mouse3").css({'background-position-y':"300px"});
+            $(".mouse3").transition({'background-position-y':"0"},1250,'linear');
+        };
+        Mouse3.prototype.down = function(){
+            //$(".mouse3").removeClass("active3");
+            //$(".mouse3").addClass("negative3");
+            $(".mouse3").transition({'background-position-y':"300px"},1250,'linear',function(){flag_11=false});
+        };
+        var mouse3 = new Mouse3();
+        var st3 = setInterval('mouse3.move(c)',2800);
+
+        //console.log(flag_11);
+        /*存在地鼠抽搐问题！！！！！！！*/
+        $(".mouse1").click(function(e){
+            mouseClick(1,flag_11);
+          /*  if(flag_11) {
+                $(".mouse1").css({'background-position-x': "-100px"});
+                setTimeout(function(){
+                    $(".mouse1").css({'background-position-x':"-200px"});
+                    $(".mouse1").css({'display':"none"});
+                },100);
+                sum += 10;
+                $(".score").text(sum);
+                flag_11 = false;
+            }*/
+        });
+        $(".mouse2").click(function(){
+            mouseClick(2,mouse2.flag);
+        });
+        $(".mouse3").click(function(){
+            mouseClick(3,mouse3.flag);
+        });
+
+        /*var testtttt = setInterval(function(){
+            console.log(sum);
+        },1000);*/
+        /*function move(){
+         var a = ran();
+         /!*var b = pos[a][0],pos[a][1]
+         if(b==temp){
+         a = ran();
+         }
+         if(a!=b){
+         a=b;
+         }
+         temp = b;*!/
+         //$(".mouse").css({'opacity':"1"});
+         $(".mouse").addClass("active");
+         $(".mouse").css({'left':pos[a][0]+"px",'top':pos[a][1]+"px"});
+         $(".mouse").css({'background-position-x':"0px"});
+         $(".mouse").css({'display':"block"});
+         flag = true;
+         console.log(alive);
+         }*/
+        /*$(".mouse").mouseup(function(){
+            $(".mouse").css({'background-position-x':"-200px"});
+            alive = true;
+            flag = false;
+        });*/
+    </script>
+</body>
+</html>
