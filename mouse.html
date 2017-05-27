@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,21 +35,21 @@
         }
         .mouse1{
             width: 100px;
-            height: 200px;
+            height: 150px;
             background: url("images/awei.png") no-repeat;
             display: none;
             position: absolute;
         }
         .mouse2{
             width: 100px;
-            height: 200px;
-            background: url("images/mouse_ok5.png") no-repeat;
+            height: 100px;
+            background: url("images/tz.png") no-repeat;
             display: none;
             position: absolute;
         }
         .mouse3{
             width: 100px;
-            height: 200px;
+            height: 100px;
             background: url("images/mouse_ok5.png") no-repeat;
             display: none;
             position: absolute;
@@ -131,21 +131,21 @@
             }
             .mouse1{
                 width: 100px;
-                height: 200px;
+                height: 150px;
                 background: url("images/awei.png") no-repeat;
                 display: none;
                 position: absolute;
             }
             .mouse2{
                 width: 100px;
-                height: 200px;
-                background: url("images/mouse_ok5.png") no-repeat;
+                height: 100px;
+                background: url("images/tz.png") no-repeat;
                 display: none;
                 position: absolute;
             }
             .mouse3{
                 width: 100px;
-                height: 200px;
+                height: 100px;
                 background: url("images/mouse_ok5.png") no-repeat;
                 display: none;
                 position: absolute;
@@ -179,7 +179,7 @@
         function changeURL3(){
             $(".mouse3").css({'background-image':"url("+imgSrc[Math.floor(Math.random()*imgSrc.length)]+")"});
         }
-        var change_url2 = setInterval('changeURL2()',3600);
+        //var change_url2 = setInterval('changeURL2()',3600);
         var change_url3 = setInterval('changeURL3()',2800);
 
         function create(){
@@ -254,13 +254,13 @@
         Mouse1.prototype.up = function(){
             //$(".mouse1").removeClass("negative");
             //$(".mouse1").addClass("active");
-            $(".mouse1").css({'background-position-y':"300px"});
+            $(".mouse1").css({'background-position-y':"150px"});
             $(".mouse1").transition({'background-position-y':"0"},800,'linear');
         };
         Mouse1.prototype.down = function(){
             //$(".mouse1").removeClass("active");
             //$(".mouse1").addClass("negative");
-            $(".mouse1").transition({'background-position-y':"300px"},300,'linear',function(){flag_11=false});
+            $(".mouse1").transition({'background-position-y':"300px"},150,'linear',function(){flag_11=false});
         };
         var mouse1 = new Mouse1();
         var st = setInterval('mouse1.move(a)',10000);
