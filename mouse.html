@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>家族欢乐打地鼠</title>
     <style>
         #main{
             width: 1000px;
@@ -14,7 +14,6 @@
         .score{
             width: 100px;
             height: 100px;
-            border: 1px solid red;
             font-size: 30px;
             text-align: center;
             line-height:30px;
@@ -25,7 +24,6 @@
         .countdown{
             width: 100px;
             height: 100px;
-            border: 1px solid red;
             font-size: 30px;
             text-align: center;
             line-height:30px;
@@ -48,55 +46,12 @@
             position: absolute;
         }
         .mouse3{
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             background: url("images/mouse_ok5.png") no-repeat;
             display: none;
             position: absolute;
         }
-      /*  .active{
-            animation: mouse-up 1.5s 1;
-            !*animation-play-state:paused;*!
-        }
-        @keyframes mouse-up {
-            0%{background-position-y: 300px}
-            100%{background-position-y: 0px}
-        }
-        .negative{
-            animation: mouse-down 1.5s 1;
-        }
-        @keyframes mouse-down {
-            0%{background-position-y: 0px}
-            100%{background-position-y: 300px}
-        }
-        .active2{
-            animation: mouse-up 2s 1;
-        }
-        @keyframes mouse-up {
-            0%{background-position-y: 300px}
-            100%{background-position-y: 0px}
-        }
-        .negative2{
-            animation: mouse-down 2s 1;
-        }
-        @keyframes mouse-down {
-            0%{background-position-y: 0px}
-            100%{background-position-y: 300px}
-        }
-        .active3{
-            animation: mouse-up 1.25s 1;
-        }
-        @keyframes mouse-up {
-            0%{background-position-y: 300px}
-            100%{background-position-y: 0px}
-        }
-        .negative3{
-            animation: mouse-down 1.25s 1;
-        }
-        @keyframes mouse-down {
-            0%{background-position-y: 0px}
-            100%{background-position-y: 300px}
-        }*/
     </style>
     <style>
         @media screen and (max-width: 1200px) {
@@ -108,11 +63,9 @@
                 position: relative;
             }
             .score{
-                width: 100px;
+                width: 250px;
                 height: 100px;
-                border: 1px solid red;
                 font-size: 30px;
-                text-align: center;
                 line-height:30px;
                 position: absolute;
                 left: 20%;
@@ -121,8 +74,8 @@
             .countdown{
                 width: 100px;
                 height: 100px;
-                border: 1px solid red;
-                font-size: 30px;
+                font-size: 80px;
+                font-weight: bold;
                 text-align: center;
                 line-height:30px;
                 position: absolute;
@@ -132,20 +85,20 @@
             .mouse1{
                 width: 100px;
                 height: 150px;
-                background: url("images/awei.png") no-repeat;
+                background: url("images/awei_ok1.png") no-repeat;
                 display: none;
                 position: absolute;
             }
             .mouse2{
                 width: 120px;
                 height: 120px;
-                background: url("images/tz.png") no-repeat;
+                background: url("images/umane.png") no-repeat;
                 display: none;
                 position: absolute;
             }
             .mouse3{
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 120px;
                 background: url("images/mouse_ok5.png") no-repeat;
                 display: none;
                 position: absolute;
@@ -157,40 +110,68 @@
 </head>
 <body>
     <div id="main">
-        <div class="score"></div>
+        <div class="score">我的分数：</div>
         <div class="countdown"></div>
         <div class="mouse1"></div>
         <div class="mouse2"></div>
         <div class="mouse3"></div>
     </div>
     <script>
+        var audio = new Audio("files/1.ogg");
+
+        setTimeout(function () {
+            audio.autoplay = true;
+            audio.loop = true;
+            audio.play();
+        },3000);
+
         var main = document.getElementById('main');
         var pos = new Array();
         var imgSrc = new Array();
-        pos = [[330,75],[506,75],[698,75],[240,245],[425,245],[588,245],[167,410],[344,410],[517,410]];
-        imgSrc = ["images/.jpg","images/mouse3.jpg","images/mouse4.jpg","images/mouse5.jpg","images/mouse6.jpg","images/mouse7.jpg"];
+        pos2 = [[330,75],[506,75],[698,75],[240,245],[425,245],[588,245],[167,410],[344,410],[517,410]];
+        pos = [[33,22],[50,22],[70,22],[24,44],[41,44],[59,44],[17,65],[34,65],[52,65]];
+        imgSrc = ["images/af.png","images/rouwan.png","images/aill.png","images/caoshuai.png","images/ee.png","images/er.png","images/fg.png","images/h.png","images/hh.png","images/hua.png","images/huangh.png","images/jiong.png","images/jiyou.png","images/jr.png","images/kai.png","images/masay.png","images/qing.png","images/sao.png","images/swall1.png","images/tz.png","images/umane.png","images/wanc.png","images/xiang.png","images/xix.png","images/yan.png","images/yw.png"];
         var flag = true;
         var a, b, c;
         var sum = 0;
         var t = 60;
+        var imgRan1,imgRan2;
         function changeURL2(){
-            $(".mouse2").css({'background-image':"url("+imgSrc[Math.floor(Math.random()*imgSrc.length)]+")"});
+            imgRan1 = Math.floor(Math.random()*imgSrc.length);
+            $(".mouse2").css({'background-image':"url("+imgSrc[imgRan1]+")"});
         }
         function changeURL3(){
-            $(".mouse3").css({'background-image':"url("+imgSrc[Math.floor(Math.random()*imgSrc.length)]+")"});
+            imgRan2 = Math.floor(Math.random()*imgSrc.length);
+            $(".mouse3").css({'background-image':"url("+imgSrc[imgRan2]+")"});
         }
-        //var change_url2 = setInterval('changeURL2()',3600);
+        var change_url2 = setInterval('changeURL2()',3600);
         var change_url3 = setInterval('changeURL3()',2800);
 
         function create(){
             var div = document.createElement('div');
-            var cssStr = "width:300px;height:300px;border:1px solid red; position: absolute;left:300px;top:300px;z-index:100;text-align:center;font-size:30px;";
+            var p1 = document.createElement('p');
+            var p2 = document.createElement('p');
+            var cssStr = "width:1000px;height:1200px;position: absolute;z-index:100;text-align:center;font-size:60px;font-weight:bold;padding-top:450px";
             div.style.cssText = cssStr;
-            div.innerHTML = "Vectory!";
+            div.innerHTML = "游戏结束！<br />您获得的总成绩：";
+            p1.style.color = "red";
+            p1.innerText = sum;
+            p2.style.color = "blue";
+            p2.style.fontSize = "30px";
+            p2.innerText = "(ps:再过5秒游戏将重新开始。。。。。。)";
+            div.appendChild(p1);
+            div.appendChild(p2);
             main.appendChild(div);
+            setTimeout(function(){
+                main.removeChild(div);
+                window.location.reload();
+            },5000);
         }
         var timer = setInterval(function(){
-            if(t<=0){
+            if(t<=10&&t>0){
+                $(".countdown").css({'color':"red"});
+            }
+            else if(t<=0){
                 create();
                 clearInterval(timer);
             }
@@ -219,21 +200,18 @@
         }*/
         function cssMove(i,ran){
             $(".mouse"+i).css({'display':"none"});
-            $(".mouse"+i).css({'left':pos[ran][0]+"px",'top':pos[ran][1]+"px"});
+            $(".mouse"+i).css({'left':pos[ran][0]+"%",'top':pos[ran][1]+"%"});
             $(".mouse"+i).css({'background-position-x':"0px"});
             $(".mouse"+i).css({'display':"block"});
         }
         function mouseClick(i,flag){
             if(flag) {
-                $(".mouse"+i).css({'background-position-x': "-100px"});
-                //$(".mouse"+i).transition({'background-position-y':"300px"},700,'linear');
+                $(".mouse"+i).css({'background-position-x': "-120px"});
                 //$(".mouse"+i).css({'display':"none"});
                 setTimeout(function(){
-                    $(".mouse"+i).css({'background-position-x':"-200px"});
+                    //$(".mouse"+i).css({'background-position-x':"-200px"});
                     $(".mouse"+i).css({'display':"none"});
                 },100);
-                sum += i*10;
-                $(".score").text(sum);
                 flag = false;
             }
         }
@@ -252,14 +230,10 @@
             //console.log(this.flag);
         };
         Mouse1.prototype.up = function(){
-            //$(".mouse1").removeClass("negative");
-            //$(".mouse1").addClass("active");
             $(".mouse1").css({'background-position-y':"150px"});
             $(".mouse1").transition({'background-position-y':"0"},800,'linear');
         };
         Mouse1.prototype.down = function(){
-            //$(".mouse1").removeClass("active");
-            //$(".mouse1").addClass("negative");
             $(".mouse1").transition({'background-position-y':"300px"},150,'linear',function(){flag_11=false});
         };
         var mouse1 = new Mouse1();
@@ -276,15 +250,11 @@
             setTimeout(this.down,2000);
         };
         Mouse2.prototype.up = function(){
-            //$(".mouse2").removeClass("negative2");
-            //$(".mouse2").addClass("active2");
-            $(".mouse2").css({'background-position-y':"300px"});
+            $(".mouse2").css({'background-position-y':"120px"});
             $(".mouse2").transition({'background-position-y':"0"},1500,'linear');
         };
         Mouse2.prototype.down = function(){
-            //$(".mouse2").removeClass("active2");
-            //$(".mouse2").addClass("negative2");
-            $(".mouse2").transition({'background-position-y':"300px"},1500,'linear',function(){flag_11=false});
+            $(".mouse2").transition({'background-position-y':"120px"},1500,'linear',function(){flag_11=false});
         };
         var mouse2 = new Mouse2();
         var st2 = setInterval('mouse2.move(b)',3600);
@@ -300,67 +270,36 @@
             setTimeout(this.down,1500);
         };
         Mouse3.prototype.up = function(){
-            //$(".mouse3").removeClass("negative3");
-            //$(".mouse3").addClass("active3");
-            $(".mouse3").css({'background-position-y':"300px"});
+            $(".mouse3").css({'background-position-y':"120px"});
             $(".mouse3").transition({'background-position-y':"0"},1250,'linear');
         };
         Mouse3.prototype.down = function(){
-            //$(".mouse3").removeClass("active3");
-            //$(".mouse3").addClass("negative3");
-            $(".mouse3").transition({'background-position-y':"300px"},1250,'linear',function(){flag_11=false});
+            $(".mouse3").transition({'background-position-y':"120px"},1250,'linear',function(){flag_11=false});
         };
         var mouse3 = new Mouse3();
         var st3 = setInterval('mouse3.move(c)',2800);
 
-        //console.log(flag_11);
-        /*存在地鼠抽搐问题！！！！！！！*/
         $(".mouse1").click(function(e){
             mouseClick(1,flag_11);
-          /*  if(flag_11) {
-                $(".mouse1").css({'background-position-x': "-100px"});
-                setTimeout(function(){
-                    $(".mouse1").css({'background-position-x':"-200px"});
-                    $(".mouse1").css({'display':"none"});
-                },100);
-                sum += 10;
-                $(".score").text(sum);
-                flag_11 = false;
-            }*/
+            sum += 100;
+            $(".score").text("我的分数："+sum);
         });
         $(".mouse2").click(function(){
             mouseClick(2,mouse2.flag);
+            if(imgRan1==1){
+                sum += 40;
+            }
+            sum += 10;
+            $(".score").text("我的分数："+sum);
         });
         $(".mouse3").click(function(){
             mouseClick(3,mouse3.flag);
+            if(imgRan2==1){
+                sum += 40;
+            }
+            sum += 10;
+            $(".score").text("我的分数："+sum);
         });
-
-        /*var testtttt = setInterval(function(){
-            console.log(sum);
-        },1000);*/
-        /*function move(){
-         var a = ran();
-         /!*var b = pos[a][0],pos[a][1]
-         if(b==temp){
-         a = ran();
-         }
-         if(a!=b){
-         a=b;
-         }
-         temp = b;*!/
-         //$(".mouse").css({'opacity':"1"});
-         $(".mouse").addClass("active");
-         $(".mouse").css({'left':pos[a][0]+"px",'top':pos[a][1]+"px"});
-         $(".mouse").css({'background-position-x':"0px"});
-         $(".mouse").css({'display':"block"});
-         flag = true;
-         console.log(alive);
-         }*/
-        /*$(".mouse").mouseup(function(){
-            $(".mouse").css({'background-position-x':"-200px"});
-            alive = true;
-            flag = false;
-        });*/
     </script>
 </body>
 </html>
