@@ -122,10 +122,22 @@
         setTimeout(function () {
             audio.autoplay = true;
             audio.loop = true;
+			 if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady',function () {
+                        audio.play();
+                    }, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', function () {
+                        audio.play();
+                    });
+                    document.attachEvent('onWeixinJSBridgeReady',function () {
+                        audio.play();
+                    });
+                }
+            }
             audio.play();
-			   document.addEventListener("WeixinJSBridgeReady", function () {
-                audio.play();
-            }, false);
+			 
         },3000);
 
         var main = document.getElementById('main');
