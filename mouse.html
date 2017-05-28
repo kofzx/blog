@@ -123,6 +123,9 @@
             audio.autoplay = true;
             audio.loop = true;
             audio.play();
+			   document.addEventListener("WeixinJSBridgeReady", function () {
+                audio.play();
+            }, false);
         },3000);
 
         var main = document.getElementById('main');
