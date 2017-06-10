@@ -1,0 +1,26 @@
+        #captcha{
+            margin: 0 auto;
+            height:300px;
+            position: relative;
+        }
+        .group{
+            height:50px;
+            position: absolute;
+            left: 76%;
+            top: 55%;
+        }
+        .group input{
+            width:70%;
+            height:50%;
+            font-size: 14px;
+        }
+        .group button{
+            width:25%;
+            height:50%;
+            font-size: 14px;
+        }
+		#msg{
+			text-align:center;
+			color:green;
+			font-size: 14px;
+		}

@@ -1,0 +1,69 @@
+.text_declare{
+	position: absolute;
+	left: 46%;
+	top: 75.5%;
+}
+.text_declare>p{
+	font-size: 20px;
+	color:#EB7034;
+}
+.main {
+	width:100%;
+	height:140px;
+	
+}
+#picShow {
+	width: 23%;
+	height: 120px;
+	margin: 0 auto;
+	margin-top:50px;
+	border: 1px solid gray;
+}
+#picLeft {
+	width: 18.5%;
+	height: 100px;
+	border: 1px solid gray;
+	position:absolute;
+	left: 18%;
+	top: 80%;
+}
+#picRight {
+	width: 18.5%;
+	height: 100px;
+	border: 1px solid gray;
+	position:absolute;
+	left: 63%;
+	top: 80%;
+}
+#left_point {
+	position:absolute;
+	width:50px;
+	height:50px;
+	left: 11%;
+	top: 83%;
+}
+#left_point>p {
+font-weight: bold;
+	text-align:center;
+	line-height:50px;
+	color: brown;
+}
+#left_point>p:hover{
+	cursor: pointer;
+}
+#right_point {
+	width:50px;
+	height:50px;
+	position:absolute;
+	left: 83%;
+	top: 83%;
+}
+#right_point>p {
+	font-weight: bold;
+	text-align:center;
+	line-height:50px;
+	color: brown;
+}
+#right_point>p:hover{
+	cursor: pointer;
+}

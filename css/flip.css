@@ -1,0 +1,92 @@
+.card {
+	padding: 50px;
+	height: 200px;
+	position: relative;
+	border: 1px solid black;
+	-webkit-perspective: 500;
+}
+
+.card .front1 {
+	position: absolute;
+	z-index: 9;
+	left: 110px;
+	top: 12px;
+}
+
+.card .back1 {
+	position: absolute;
+	z-index: 8;
+	left: 110px;
+	top: 12px;
+}
+.card .front2 {
+	position: absolute;
+	z-index: 9;
+	left: 20px;
+	top: 139px;
+}
+
+.card .back2 {
+	position: absolute;
+	z-index: 8;
+	left: 20px;
+	top: 139px;
+}
+.card .front3 {
+	position: absolute;
+	z-index: 9;
+	left: 210px;
+	top: 139px;
+}
+
+.card .back3 {
+	position: absolute;
+	z-index: 8;
+	left: 210px;
+	top: 139px;
+}
+.flipped1 .front1 {
+	-webkit-backface-visibility: hidden;
+	transition: all 1s ease;
+	position: absolute;
+	-webkit-transform: rotate3d(0, 1, 0, 180deg);
+	z-index: 8;
+}
+
+.flipped1 .back1 {
+	-webkit-backface-visibility: hidden;
+	transition: all 1s ease;
+	position: absolute;
+	-webkit-transform: rotate3d(0, 1, 0, 0deg);
+	z-index: 9;
+}
+.flipped2 .front2 {
+	-webkit-backface-visibility: hidden;
+	transition: all 1s ease;
+	position: absolute;
+	-webkit-transform: rotate3d(0, 1, 0, 180deg);
+	z-index: 8;
+}
+
+.flipped2 .back2 {
+	-webkit-backface-visibility: hidden;
+	transition: all 1s ease;
+	position: absolute;
+	-webkit-transform: rotate3d(0, 1, 0, 0deg);
+	z-index: 9;
+}
+.flipped3 .front3 {
+	-webkit-backface-visibility: hidden;
+	transition: all 1s ease;
+	position: absolute;
+	-webkit-transform: rotate3d(0, 1, 0, 180deg);
+	z-index: 8;
+}
+
+.flipped3 .back3 {
+	-webkit-backface-visibility: hidden;
+	transition: all 1s ease;
+	position: absolute;
+	-webkit-transform: rotate3d(0, 1, 0, 0deg);
+	z-index: 9;
+}

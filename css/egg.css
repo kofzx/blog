@@ -1,0 +1,49 @@
+			#egg{
+				width: 95%;
+				height:250px;
+				padding-top: 10%;
+				margin:0 auto;
+				position: relative;
+			}
+			.pic{
+				height: 250px;	
+			}
+			.pic ul{
+				margin-left: 3.5%;
+				margin-top: 8%;
+			}
+			.pic ul li{
+				float: left;
+				list-style: none;
+				padding-left: 5%
+			}
+			.pic p{
+				font-size: 20px;
+				text-align: center;
+				padding-bottom: 2%;
+			}
+			#title{
+				color: #f631a0;
+			}
+			#try_again{
+				width: 100px;
+				text-align: center;
+				line-height: 25px;
+				border-radius: 15px;
+				border: 2px solid #FF6;
+				color: #9898CD;
+			}
+			#try_again:hover{
+				/*background-color: #FFDAB5;*/
+				border-color: #FFFFB0;
+				cursor: pointer;
+				color: #BCBCDE;
+			}
+			.hide{
+				width: 100px;
+				height: 100px;
+				display: none;
+				/* border: 1px solid blue; */
+				position: absolute;
+				z-index: 999;
+			}
