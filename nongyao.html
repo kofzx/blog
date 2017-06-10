@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>随机英雄</title>
+    <style>
+        body{
+            background-color: rgb(249,249,249);
+        }
+       #change{
+            width: 240px;
+            height: 360px;
+            border: blue 1px solid;
+            background: url("images/wenhao.jpg") no-repeat;
+            background-size: 100% 100%;
+        }
+        #loading{
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            left: 0;
+            top:0;
+            background-color: honeydew;
+        }
+        #loading p{
+            font-size: 60px;
+            margin-top: 65%;
+            margin-left: 30%;
+        }
+        ul{
+            list-style: none;
+            padding-right: 12%;
+        }
+        ul li{
+            float: left;
+            margin-top: 60%;
+            padding-left: 20%;
+        }
+    </style>
+    <script src="js/jquery-3.0.0.min.js"></script>
+</head>
+<body>
+<div class="main">
+    <ul>
+        <li> <div id="change">123</div></li>
+        <li><img src="" width="240" height="360"></li>
+    </ul>
+</div>
+<div id="loading">
+    <p>图片正在加载0%</p>
+</div>
+<script>
+    var imgArr = [ 'images/actors/ng (1).jpg','images/actors/ng (2).jpg','images/actors/ng (3).jpg',
+                    'images/actors/ng (4).jpg','images/actors/ng (5).jpg','images/actors/ng (6).jpg',
+                     'images/actors/ng (7).jpg','images/actors/ng (8).jpg','images/actors/ng (9).jpg',
+                     'images/actors/ng (10).jpg','images/actors/ng (11).jpg','images/actors/ng (12).jpg',
+                     'images/actors/ng (13).jpg','images/actors/ng (14).jpg','images/actors/ng (15).jpg',
+                    'images/actors/ng (16).jpg','images/actors/ng (17).jpg','images/actors/ng (18).jpg',
+                     'images/actors/ng (19).jpg','images/actors/ng (20).jpg','images/actors/ng (21).jpg',
+                     'images/actors/ng (22).jpg','images/actors/ng (23).jpg','images/actors/ng (24).jpg',
+                    'images/actors/ng (25).jpg','images/actors/ng (26).jpg','images/actors/ng (27).jpg',
+                    'images/actors/ng (28).jpg','images/actors/ng (29).jpg',
+                     'images/actors/ng (30).jpg','images/actors/ng (31).jpg','images/actors/ng (32).jpg',
+                    'images/actors/ng (33).jpg','images/actors/ng (34).jpg','images/actors/ng (35).jpg',
+                 'images/actors/ng (36).jpg','images/actors/ng (37).jpg','images/actors/ng (38).jpg',
+                 'images/actors/ng (39).jpg','images/actors/ng (40).jpg','images/actors/ng (41).jpg',
+                 'images/actors/ng (42).jpg','images/actors/ng (43).jpg','images/actors/ng (44).jpg',
+                 'images/actors/ng (45).jpg','images/actors/ng (46).jpg','images/actors/ng (47).jpg',
+                'images/actors/ng (48).jpg','images/actors/ng (49).jpg','images/actors/ng (50).jpg',
+                'images/actors/ng (51).jpg','images/actors/ng (52).jpg','images/actors/ng (53).jpg',
+                 'images/actors/ng (54).jpg','images/actors/ng (55).jpg','images/actors/ng (56).jpg',
+               'images/actors/ng (57).jpg','images/actors/ng (58).jpg','images/actors/ng (59).jpg',
+                'images/actors/ng (60).jpg','images/actors/ng (61).jpg','images/actors/ng (62).jpg',
+                 'images/actors/ng (63).jpg','images/actors/ng (64).jpg','images/actors/ng (65).jpg',
+                 'images/actors/ng (66).jpg'
+    ];
+    var count = 0,ran = Math.floor(Math.random()*66);
+    $.each(imgArr,function(i,arr){
+        var imgObj = new Image();
+        $(imgObj).on('load error',function(){
+            $("#loading p").html("图片正在加载"+Math.round((count+1)/imgArr.length*100)+"%");
+            if(count >= imgArr.length-1){
+                $("#loading").hide();
+            }
+            //console.log(arr);
+            count++;
+        });
+        imgObj.src = arr;
+    });
+    $("#change").click(function(){
+         ran = Math.floor(Math.random()*66);
+        $('img')[0].src = imgArr[ran];
+    });
+</script>
+</body>
+</html>
