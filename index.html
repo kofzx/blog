@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>circle_progress</title>
+</head>
+<body>
+    <canvas id="canvas" width="600" height="300"></canvas>
+    <script>
+    	window.requestAnimationFrame = (function(){
+  		  return  window.requestAnimationFrame       ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame    ||
+          function( callback ){
+            window.setTimeout(callback, 8000);
+          };
+		})();
+
+    	var can = document.getElementById('canvas');
+    	var c = can.getContext('2d');  	
+    	var pro = 0;
+    	function animate(){
+    		c.clearRect(0,0,600,300);
+    		c.beginPath();
+    		c.strokeStyle = 'red';
+    		c.arc(300, 100, 90, 0, pro * Math.PI/12);
+    		c.stroke();
+    		c.closePath();
+    	}
+    	function progress(){
+    		if(pro<24)
+    		pro += 0.5;
+    		console.log(pro);
+    		animate();
+    		//requestAnimationFrame(progress);
+            if(pro==24)
+                clearInterval(st);
+    	}
+    	//requestAnimationFrame(progress);
+        var st = setInterval('progress()',100);
+    </script>
+</body>
+</html>
