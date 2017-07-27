@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+    <style>
+    	#left{
+    		position: absolute;
+    		left:12%;
+    		top: 90%;
+    	}
+    	#right{
+    		position: absolute;
+    		left:55%;
+    		top: 90%;
+    	}
+    </style>
+</head>
+<body>
+	<canvas id="canvas"></canvas>
+	<div id="left"><img src="images/plane/left_btn.jpg" alt="" width="150" height="50" /></div>
+	<div id="right"><img src="images/plane/right_btn.jpg" alt="" width="150" height="50" /></div>
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+		canvas.width = 442;
+		canvas.height = 585;
+		var deltaTime,lastTime;
+
+		/*function Ball(){
+			this.x=0;
+			this.y=0;
+			ball_div = document.createElement('div');
+			ball_div.style.width = '100px';
+			ball_div.style.height = '100px';
+			ball_div.style.backgroundImage = 'url(images/ball.jpg)';
+			ball_div.style.position = 'absolute';
+			ball_div.style.left = '30%';
+			ball_div.style.top = '30%';
+			ball_div.style.border = '1px solid brown';
+			document.body.appendChild(ball_div);
+		}
+		Ball.prototype.fall = function(){
+			this.y += 1;
+			ball_div.style.top = this.y+'px';
+		}*/
+
+		//ready imgs
+        var bg_img = new Image();
+        bg_img.src = "images/plane/bg.jpg";
+		var plane_img = new Image();
+		plane_img.src = "images/plane/plane.png";
+
+		//游戏对象
+        var littleStone;
+		var plane = {
+			x:190,
+			y:420,
+            w:77,
+            h:91
+		};
+		function Stone() {
+            this.x = [];
+            this.y = [];
+            this.speed = [];
+            this.hitFlag = [];
+            this.num = 3;
+            this.len = 95;
+            this.stone_img = new Image();
+            this.stone_img.src = "images/plane/stone.jpg";
+        }
+        Stone.prototype.init = function () {
+            for(var i = 0; i<this.num; i++){
+                this.x[i] = Math.random()*(canvas.width-this.len);
+                this.y[i] = 0;
+                this.speed[i] = Math.random()*0.15+0.05;
+                this.hitFlag[i] = false;
+            }
+        }
+        Stone.prototype.fall = function () {
+            for(var i = 0; i<this.num; i++) {
+                this.y[i] += 1*deltaTime*this.speed[i];
+            }
+        }
+        Stone.prototype.hit = function () {
+            for(var i = 0; i<this.num; i++) {
+                if (plane.x <= this.x[i] + this.len && this.x[i]<=(plane.x+this.len) && plane.y <= (this.y[i] + this.len) && this.y[i] <= (plane.y + this.len)) {
+                    this.hitFlag[i] = true;
+                }
+                if(this.y[i]+this.len>=canvas.height){
+                    this.hitFlag[i] = true;
+                    this.x[i] = Math.random()*(canvas.width-this.len);
+                    this.y[i] = 0;
+                    this.hitFlag[i] = false;
+                }
+            }
+        }
+        Stone.prototype.draw = function () {
+            for(var i = 0; i<this.num; i++) {
+                if (!this.hitFlag[i]) {
+                    ctx.drawImage(this.stone_img, this.x[i], this.y[i],this.len,this.len);
+                }
+            }
+        }
+
+		//draw img
+		function draw(){
+			ctx.drawImage(bg_img,0,0);
+			ctx.drawImage(plane_img,plane.x,plane.y,plane.w,plane.h);
+		}
+		//绑定事件
+		$('img').eq(0).on('touchstart',function (e) {
+		    if(plane.x>-5)
+                plane.x -= 15;
+            console.log(plane.x);
+        });
+        $("img").eq(1).on('touchstart',function (e) {
+            if(plane.x<370)
+                plane.x += 15;
+            console.log(plane.x);
+        });
+        //游戏初始化
+        function init() {
+            lastTime = new Date();
+            littleStone = new Stone();
+            littleStone.init();
+        }
+		//游戏主接口
+		function main(){
+            var now = new Date();
+            deltaTime = now - lastTime;
+            lastTime = now;
+
+			draw();
+			littleStone.fall();
+            littleStone.draw();
+            littleStone.hit();
+
+			requestAnimationFrame(main);
+		}
+		window.onload = function () {
+            init();
+            main();
+        }
+	</script>
+
+</body>
+</html>
