@@ -9,57 +9,33 @@
     <script type="text/javascript" charset="utf-8">
       	mui.init();
     </script>
-    <script src="js/jquery-3.0.0.min.js"></script>
-    <style>
-    	#left{
-    		position: absolute;
-    		left:12%;
-    		top: 90%;
-    	}
-    	#right{
-    		position: absolute;
-    		left:55%;
-    		top: 90%;
-    	}
-    </style>
+    <script src="js/jquery-2.1.0.js"></script>
 </head>
 <body>
 	<canvas id="canvas"></canvas>
-	<div id="left"><img src="images/plane/left_btn.jpg" alt="" width="150" height="50" /></div>
-	<div id="right"><img src="images/plane/right_btn.jpg" alt="" width="150" height="50" /></div>
 	<script>
 		var canvas = document.getElementById('canvas');
 		var ctx = canvas.getContext('2d');
-		canvas.width = 375;
-		canvas.height = 627;
-		var deltaTime,lastTime;
+		canvas.width = 442;
+		canvas.height = 585;
+		var deltaTime,lastTime,stopAnimation;
+        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
-		/*function Ball(){
-			this.x=0;
-			this.y=0;
-			ball_div = document.createElement('div');
-			ball_div.style.width = '100px';
-			ball_div.style.height = '100px';
-			ball_div.style.backgroundImage = 'url(images/ball.jpg)';
-			ball_div.style.position = 'absolute';
-			ball_div.style.left = '30%';
-			ball_div.style.top = '30%';
-			ball_div.style.border = '1px solid brown';
-			document.body.appendChild(ball_div);
-		}
-		Ball.prototype.fall = function(){
-			this.y += 1;
-			ball_div.style.top = this.y+'px';
-		}*/
+        var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame || window.webkitCancelAnimationFrame;
 
 		//ready imgs
         var bg_img = new Image();
         bg_img.src = "images/plane/bg.jpg";
 		var plane_img = new Image();
 		plane_img.src = "images/plane/plane.png";
+		var left_img = new Image();
+		left_img.src = "images/plane/left_btn.jpg";
+        var right_img = new Image();
+        right_img.src = "images/plane/right_btn.jpg";
 
 		//游戏对象
-        var littleStone;
+        var littleStone,littleBall;
 		var plane = {
 			x:190,
 			y:420,
@@ -72,9 +48,9 @@
             this.speed = [];
             this.hitFlag = [];
             this.num = 3;
-            this.len = 95;
+            this.len = 80;
             this.stone_img = new Image();
-            this.stone_img.src = "images/plane/stone.jpg";
+            this.stone_img.src = "images/plane/stone.png";
         }
         Stone.prototype.init = function () {
             for(var i = 0; i<this.num; i++){
@@ -95,10 +71,8 @@
                     this.hitFlag[i] = true;
                 }
                 if(this.y[i]+this.len>=canvas.height){
-                    this.hitFlag[i] = true;
                     this.x[i] = Math.random()*(canvas.width-this.len);
                     this.y[i] = 0;
-                    this.hitFlag[i] = false;
                 }
             }
         }
@@ -106,45 +80,126 @@
             for(var i = 0; i<this.num; i++) {
                 if (!this.hitFlag[i]) {
                     ctx.drawImage(this.stone_img, this.x[i], this.y[i],this.len,this.len);
+                }else{
+                    canvas.removeEventListener('touchstart',touchEvent,false);
+                    gameover();
+                }
+            }
+        }
+        function Ball() {
+            this.x = [];
+            this.y = [];
+            this.speed = [];
+            this.hitFlag = [];
+            this.num = 3;
+            this.len = 95;
+            this.score = 0;
+            this.ball_img = new Image();
+            this.ball_img.src = "images/plane/ball.png";
+        }
+        Ball.prototype.init = function () {
+            for(var i = 0; i<this.num; i++){
+                this.x[i] = Math.random()*(canvas.width-this.len);
+                this.y[i] = 0;
+                this.speed[i] = Math.random()*0.15+0.05;
+                this.hitFlag[i] = false;
+            }
+        }
+        Ball.prototype.fall = function () {
+            for(var i = 0; i<this.num; i++) {
+                this.y[i] += 1*deltaTime*this.speed[i];
+            }
+        }
+        Ball.prototype.hit = function () {
+            for(var i = 0; i<this.num; i++) {
+                if (plane.x <= this.x[i] + this.len && this.x[i]<=(plane.x+this.len) && plane.y <= (this.y[i] + this.len) && this.y[i] <= (plane.y + this.len)) {
+                    this.hitFlag[i] = true;
+                }else{
+                }
+                if(this.y[i]+this.len>=canvas.height){
+                    this.x[i] = Math.random()*(canvas.width-this.len);
+                    this.y[i] = 0;
+                }
+            }
+        }
+        Ball.prototype.draw = function () {
+		    var score = 0;
+            for(var i = 0; i<this.num; i++) {
+                if (!this.hitFlag[i]) {
+                    ctx.drawImage(this.ball_img, this.x[i], this.y[i],this.len,this.len);
+                }else{
+                    score++;
+                    ctx.clearRect(310,10,100,50);
+                    ctx.font = "35px Calibri";
+                    ctx.fillStyle = "blue";
+                    ctx.fillText("Score:"+score,310,50,100);
+                    ctx.fill();
                 }
             }
         }
 
 		//draw img
 		function draw(){
+		    ctx.clearRect(0,0,canvas.width,canvas.height);
 			ctx.drawImage(bg_img,0,0);
 			ctx.drawImage(plane_img,plane.x,plane.y,plane.w,plane.h);
+			ctx.drawImage(left_img,50,520,160,50);
+            ctx.drawImage(right_img,250,520,160,50);
 		}
-		//绑定事件
-		$('img').eq(0).on('touchstart',function (e) {
-		    if(plane.x>-5)
-                plane.x -= 15;
-            console.log(plane.x);
-        });
-        $("img").eq(1).on('touchstart',function (e) {
-            if(plane.x<295)
-                plane.x += 15;
-            console.log(plane.x);
-        });
+		function fillScore(){
+            ctx.font = "35px Calibri";
+            ctx.fillStyle = "blue";
+            ctx.fillText("Score:",310,50);
+            ctx.fill();
+        }
+		function gameover(){
+            ctx.font = "40px Calibri";
+		    ctx.fillStyle = "red";
+		    ctx.fillText("Game Over",130,250);
+		    ctx.fill();
+        }
         //游戏初始化
         function init() {
-            lastTime = new Date();
+            canvas.addEventListener('touchstart',touchEvent,false);
+
+            lastTime = Date.now();
             littleStone = new Stone();
             littleStone.init();
+            littleBall = new Ball();
+            littleBall.init();
+        }
+        //事件
+        function touchEvent(e){
+           var clientX = e.touches[0].clientX;
+           var clientY = e.touches[0].clientY;
+           if(clientX>48&&clientX<210&&clientY>513&&clientY<570){   //left
+               if(plane.x>-5)
+                   plane.x -= 15;
+               //cancelAnimationFrame(stopAnimation);
+           }
+           if(clientX>249&&clientX<411&&clientY>513&&clientY<570){   //right
+               if(plane.x<370)
+                   plane.x += 15;
+           }
         }
 		//游戏主接口
 		function main(){
-            var now = new Date();
+            var now = Date.now();
             deltaTime = now - lastTime;
             lastTime = now;
 
 			draw();
 			littleStone.fall();
-            littleStone.draw();
             littleStone.hit();
+            littleStone.draw();
+            littleBall.fall();
+            littleBall.hit();
+            littleBall.draw();
+            //fillScore();
 
-			requestAnimationFrame(main);
+			stopAnimation = requestAnimationFrame(main);
 		}
+        stopAnimation = requestAnimationFrame(main);
 		window.onload = function () {
             init();
             main();
