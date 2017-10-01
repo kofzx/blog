@@ -1,0 +1,482 @@
+<html><head>
+		<title>中秋祝福</title>
+		<meta http-equiv="imagetoolbar" content="no">
+        <script src="js/heka.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            //initViewport();
+        </script>
+        <meta name="viewport"content="width=500,maximum-scale=1.3,user-scalable=no"><style>@-webkit-keyframes rotatemusic {from {-webkit-transform: rotate(0deg);}to { -webkit-transform: rotate(360deg);}}::-webkit-input-placeholder {color: #000;}</style>
+        <meta name="author" content="http://www.kxqq.net">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+<script type="text/javascript">
+if(typeof(AN)==="undefined"){var AN={}}AN.instances={symbols:[],controllers:[]};AN.apiVersion=1;AN.Controller=function(){return{currentScene:false,userData:{},setConfig:function(a){AN.instances.controllers.push(this);this.events=a.events;this.prefix=a.cssPrefix;this.projectActions=a.projectActions;this.basePath=a.basePath?a.basePath:"";this.olElement=document.querySelector("#"+a.parentId+" ol");var d=this.olElement.children;this.useOrmma=a.ormma;this.scenes=[];this.scenesById={};this.sceneByName={};var g;for(var e=0;e<a.scenes.length;e++){g=a.scenes[e];g.element=d[e];g.timelinesById={};g.timelinesByName={};for(var c=0;c<g.timelines.length;c++){g.timelinesById[g.timelines[c].id]=g.timelines[c];g.timelinesByName[g.timelines[c].name]=g.timelines[c]}this.scenesById[g.id]=g;this.scenes.push(g);if(g.name){this.sceneByName[g.name]=g}}this.setupListeners();this.startSceneByName=this.goToSceneByName;this.startSceneById=this.goToSceneById;this.startSceneByID=this.startSceneById;this.symbolInstancesByHtmlId={};this.symbolInstancesById={};this.symbols=[];var h,b,f;for(var e=0;e<a.symbols.length;e++){h=a.symbols[e];this.symbolInstancesById[h.id]=[];b=this.olElement.querySelectorAll(".an-symbol-container-"+h.id);for(var c=0;c<b.length;c++){f=new AN.Symbol();f.setConfig(b[c],h,this);this.symbolInstancesByHtmlId[b[c].id]=f;this.symbolInstancesById[h.id].push(f);this.symbols.push(f)}}this.fireAction(this.projectActions,"init");this.goToScene(this.scenes[0])},setupListeners:function(){var l=this;this.browser="unknown";if(document.body.style.MozAnimationName!==undefined){this.browser="moz"}function h(j){var i;if(l.browser==="moz"){i=j.target;while(i=i.parentNode){if(i===l.currentScene.element){l.onAnimationEnd();return}}}else{l.onAnimationEnd()}}this.olElement.addEventListener("webkitAnimationEnd",h,false);this.olElement.addEventListener("animationend",h,false);function c(i){i.element.addEventListener("mousemove",function(j){i.mousemoveAction.call(l.userData,l,j)},false)}var g;for(var e=0;e<this.scenes.length;e++){g=this.scenes[e];if(g.mousemoveAction){c(g)}}function a(m,j,i){m.addEventListener(j,function(n){i.call(l.userData,l,n)},false)}var f,b,k;for(var e=0;e<this.events.length;e++){b=this.events[e];k=b.type;f=document.getElementById(b.id);for(var d=0;d<k.length;d++){a(f,k[d],b.handler)}}},onAnimationEnd:function(){this.runningAnimationCount--;if(this.runningAnimationCount===0){this.onAllAnimationEnd()}},onAllAnimationEnd:function(){var a=this.currentScene.currentTimeline.endWaitTime;if(a){var b=this;this.sceneTimeout=setTimeout(function(){b.onSceneFinish()},a*1000)}else{this.onSceneFinish()}},forceRefresh:function(a){this.forceRefreshValue=a.element.offsetHeight},fireAction:function(b,a){if(b&&b[a]){b[a].call(this.userData,this)}},getSymbolByHtmlId:function(a){return this.symbolInstancesByHtmlId[a]},getSymbolByInstanceId:function(b){var a=this.olElement.querySelector(".an-symbol-container.an-symbol-"+b);return this.getSymbolByHtmlId(a.id)},getSymbols:function(){return this.symbols},getSymbolsBySymbolMasterId:function(a){return this.symbolInstancesById[a]},getUserData:function(){return this.userData},getTimelineByIndex:function(a){return this.currentScene.timelines[a]},getTimelineById:function(a){return this.currentScene.timelinesById[a]},getTimelineByName:function(a){return this.currentScene.timelinesByName[a]},getCurrentTimeline:function(){return this.currentScene.currentTimeline},getCurrentScene:function(){return this.currentScene},getSceneByIndex:function(a){return this.scenes[a]},getSceneById:function(a){return this.scenesById[a]},getSceneByName:function(a){return this.sceneByName[a]},goToNextTimeline:function(){var b=this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);var a=Math.min(b+1,this.currentScene.timelines.length-1);if(a===b){return}this.goToTimelineByIndex(a)},goToPreviousTimeline:function(){var b=this.currentScene.timelines.indexOf(this.currentScene.currentTimeline);var a=Math.max(b-1,0);if(b===a){return}this.goToTimelineByIndex(a)},goToTimelineById:function(a){this.goToScene(this.currentScene,this.currentScene.timelinesById[a])},goToTimelineByName:function(a){this.goToScene(this.currentScene,this.currentScene.timelinesByName[a])},goToTimelineByIndex:function(a){this.goToScene(this.currentScene,this.currentScene.timelines[a])},goToTimeline:function(a){this.goToScene(this.currentScene,a)},goToNextScene:function(){var b=this.scenes.indexOf(this.currentScene);var a=Math.min(b+1,this.scenes.length-1);if(b===a){return}this.goToSceneByIndex(a)},goToPreviousScene:function(){var a=this.scenes.indexOf(this.currentScene);var b=Math.max(a-1,0);if(a===b){return}this.goToSceneByIndex(b)},goToSceneByIndex:function(a){this.goToScene(this.scenes[a])},goToSceneByName:function(a){this.goToScene(this.sceneByName[a])},goToSceneById:function(a,b){var c=this.scenesById[a];this.goToScene(c,c.timelinesById[b])},goToScene:function(g,f){var d=g;var e=this.currentScene;var a=f;var c=e?e.currentTimeline:false;if(a===undefined){a=d.timelines[0]}var b=false;if(c===a&&e===d){b=true}else{if(e){e.element.setAttribute("class","")}}this.fireAction(c,"exitAction");clearTimeout(this.sceneTimeout);if(e!==d){this.fireAction(e,"exitAction");this.fireAction(d,"initAction")}this.fireAction(a,"initAction");this.runningAnimationCount=a.animationCount;this.currentScene=d;d.currentTimeline=a;var h="t-"+a.id;if(b||this.browser==="moz"){d.element.setAttribute("class","run restart "+h);this.forceRefresh(d)}d.element.setAttribute("class","run "+h);if(!b&&this.useOrmma){this.ormmaNextScene(d)}this.fireAction(a,"startAction");if(a.animationCount===0){this.onAllAnimationEnd()}},replayScene:function(){console.warn("replayScene is deprecated. Use restartScene instead.");this.restartScene()},restartScene:function(){this.goToScene(this.currentScene)},restartTimeline:function(){this.goToScene(this.currentScene,this.currentScene.currentTimeline)},onSceneFinish:function(){this.fireAction(this.currentScene.currentTimeline,"endAction")},goToURL:function(a){document.location.href=a},getElementById:function(a){return document.getElementById(this.getElementIdById(a))},getElementIdById:function(a){return this.prefix+a},getUrlForLocalAsset:function(b){var a="assets/"+b;if(this.basePath){a=this.basePath+"/"+a}return a},ormmaNextScene:function(c){var a=ormma.getState();if(c.dimensions.expanded){var i=ormma.getMaxSize();if(a!=="expanded"){ormma.expand({x:0,y:0,width:i.width,height:i.height})}var b="";var d=c.element.offsetHeight;var g=c.element.offsetWidth;var e=(i.height-d)/2;var h=(i.width-g)/2;b+=" translate3d("+Math.round(h)+"px,"+Math.round(e)+"px,0)";if(c.dimensions.fit){var f=Math.min(i.width/g,i.height/d);b+=" scale3d("+f+","+f+",1)"}c.element.style.webkitTransform=b}else{if(a==="expanded"){ormma.close()}ormma.resize(c.dimensions.width,c.dimensions.height)}}}};window.addEventListener('load',function(){var configData={parentId:'pqEBjyKkd-an-anim',cssPrefix:'pqEBjyKkd-',ormma:false,mraid:false,layout:{"type":"absolute","width":500,"height":750},scenes:[{id:0,dimensions:{height:100,width:100,expanded:false,fit:false},timelines:[{id:"0",name:'Timeline 1',animationCount:9,duration:17.462,lastKeyframeTime:20.262}]}],symbols:[],projectActions:{},events:[],externalResources:[]};setTimeout(function(){var controller=new AN.Controller;controller.setConfig(configData);},0);},false);
+</script>
+
+
+
+<style type="text/css">
+
+#pqEBjyKkd-an-anim > ol {list-style:none; margin:0; padding:0;}
+#pqEBjyKkd-an-anim > ol > li {margin:0; padding:0; display:none;}
+#pqEBjyKkd-an-anim > ol > li.run {display:block;}
+#pqEBjyKkd-an-anim .pqEBjyKkd-an-stage { overflow:hidden; margin:0; padding:0; }
+#pqEBjyKkd-an-anim .pqEBjyKkd-an-stage div { position: absolute; }
+.pqEBjyKkd-an-stage * {margin:0; padding:0; -webkit-font-smoothing: antialiased;}
+#pqEBjyKkd-an-anim .pqEBjyKkd-an-stage img {position: absolute; top:0; left:0;}
+#pqEBjyKkd-an-anim .AN-Scene-Description {display: none;}
+#pqEBjyKkd-an-anim iframe {border: none; height:100%; width:100%}
+#pqEBjyKkd-an-anim .pqEBjyKkd-an-stage { position: absolute; top:0; left:0; width: 100%; height:100%; }
+#pqEBjyKkd-an-anim {height: 900px; width: 500px; position: relative;}
+#pqEBjyKkd-an-anim {
+    background-color: rgba(255,255,255,1);
+    font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    font-size: 12px;
+    line-height: 1.3;
+}
+#pqEBjyKkd-an-obj-1 {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    width: 734px;
+    height: 763px;
+    top:0; left:0;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-1-0 {
+    0% {
+        -webkit-transform: translate3d(0px, 0px, 0px);
+        -webkit-animation-timing-function:linear;
+    }
+    100% {
+        -webkit-transform: translate3d(-229px, 0px, 0px);
+        -webkit-animation-timing-function:ease;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-1 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-1-0;    
+  -webkit-animation-duration: 6.0143s;    
+  -webkit-animation-delay: 0s;    
+  -webkit-animation-fill-mode: both;    
+}
+.t-0 #pqEBjyKkd-an-obj-1 {
+    -webkit-transform: translate3d(-229px, 0px, 0px);
+    -webkit-animation-timing-function:ease;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-1 {
+    -webkit-transform: translate3d(0px, 0px, 0px);
+    -webkit-animation-timing-function:linear;
+
+}
+.restart #pqEBjyKkd-an-obj-1 {    
+  -webkit-animation-name: none !important;    
+}
+#pqEBjyKkd-an-obj-2 {
+    -webkit-transform: translate3d(-1px, 510px, 0px) scale3d(1, 1, 1);
+    width: 550px;
+    height: 430px;
+    top:0; left:0;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-2-0 {
+    0% {
+        -webkit-transform: translate3d(-1px, 510px, 0px) scale3d(1, 1, 1);
+        -webkit-animation-timing-function:linear;
+    }
+    100% {
+        -webkit-transform: translate3d(-24px, 127px, 0px) scale3d(1, 1, 1);
+        -webkit-animation-timing-function:linear;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-2 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-2-0;    
+  -webkit-animation-duration: 7.9773s;    
+  -webkit-animation-delay: 0.0227s;    
+  -webkit-animation-fill-mode: both;    
+}
+.t-0 #pqEBjyKkd-an-obj-2 {
+    -webkit-transform: translate3d(-24px, 127px, 0px) scale3d(1, 1, 1);
+    -webkit-animation-timing-function:linear;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-2 {
+    -webkit-transform: translate3d(-1px, 510px, 0px) scale3d(1, 1, 1);
+    -webkit-animation-timing-function:linear;
+
+}
+.restart #pqEBjyKkd-an-obj-2 {    
+  -webkit-animation-name: none !important;    
+}
+#pqEBjyKkd-an-obj-3 {
+    -webkit-transform: translate3d(0px, 558px, 0px);
+    width: 640px;
+    height: 193px;
+    top:0; left:0;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-3-0 {
+    0% {
+        -webkit-transform: translate3d(0px, 558px, 0px);
+        -webkit-animation-timing-function:linear;
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translate3d(-120px, 558px, 0px);
+        -webkit-animation-timing-function:linear;
+        opacity: 1;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-3 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-3-0;    
+  -webkit-animation-duration: 4.9886s;    
+  -webkit-animation-delay: 0.0114s;    
+  -webkit-animation-fill-mode: both;    
+}
+.t-0 #pqEBjyKkd-an-obj-3 {
+    -webkit-transform: translate3d(-120px, 558px, 0px);
+    -webkit-animation-timing-function:linear;
+    opacity: 1;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-3 {
+    -webkit-transform: translate3d(0px, 558px, 0px);
+    -webkit-animation-timing-function:linear;
+    opacity: 1;
+
+}
+.restart #pqEBjyKkd-an-obj-3 {    
+  -webkit-animation-name: none !important;    
+}
+#pqEBjyKkd-an-obj-4 {
+    -webkit-transform: translate3d(0px, 505px, 0px);
+    width: 640px;
+    height: 56px;
+    top:0; left:0;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-4-0 {
+    0% {
+        -webkit-transform: translate3d(0px, 505px, 0px);
+        -webkit-animation-timing-function:linear;
+    }
+    100% {
+        -webkit-transform: translate3d(-120px, 505px, 0px);
+        -webkit-animation-timing-function:linear;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-4 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-4-0;    
+  -webkit-animation-duration: 4.9886s;    
+  -webkit-animation-delay: 0.0114s;    
+  -webkit-animation-fill-mode: both;    
+}
+.t-0 #pqEBjyKkd-an-obj-4 {
+    -webkit-transform: translate3d(-120px, 505px, 0px);
+    -webkit-animation-timing-function:linear;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-4 {
+    -webkit-transform: translate3d(0px, 505px, 0px);
+    -webkit-animation-timing-function:linear;
+
+}
+.restart #pqEBjyKkd-an-obj-4 {    
+  -webkit-animation-name: none !important;    
+}
+#pqEBjyKkd-an-obj-5 {
+    -webkit-transform: translate3d(170px, 243px, 0px) scale3d(0.7, 0.7, 1);
+    width: 180px;
+    height: 379px;
+    top:0; left:0;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-5-0 {
+    0% {
+        -webkit-transform: translate3d(170px, 243px, 0px) scale3d(0.7, 0.7, 1);
+        opacity: 0;
+        -webkit-animation-timing-function:linear;
+    }
+    64.7059% {
+        -webkit-transform: translate3d(170px, 213px, 0px) scale3d(0.7, 0.7, 1);
+        opacity: 1;
+        -webkit-animation-timing-function:ease-in-out;
+    }
+    100% {
+        -webkit-transform: translate3d(170px, 213px, 0px) scale3d(0.7, 0.7, 1);
+        opacity: 0;
+        -webkit-animation-timing-function:ease-in-out;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-5 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-5-0;    
+  -webkit-animation-duration: 4.8572s;    
+  -webkit-animation-delay: 3.8571s;    
+  -webkit-animation-fill-mode: both;    
+}
+.t-0 #pqEBjyKkd-an-obj-5 {
+    -webkit-transform: translate3d(170px, 213px, 0px) scale3d(0.7, 0.7, 1);
+    opacity: 0;
+    -webkit-animation-timing-function:ease-in-out;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-5 {
+    -webkit-transform: translate3d(170px, 243px, 0px) scale3d(0.7, 0.7, 1);
+    opacity: 0;
+    -webkit-animation-timing-function:linear;
+
+}
+.restart #pqEBjyKkd-an-obj-5 {    
+  -webkit-animation-name: none !important;    
+}
+#pqEBjyKkd-an-obj-6 {
+    -webkit-transform: translate3d(174px, 72px, 0px);
+    width: 235px;
+    height: 554px;
+    top:0; left:0;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-6-0 {
+    0% {
+        -webkit-transform: translate3d(174px, 72px, 0px) scale3d(0.8, 0.8, 1);
+        opacity: 0;
+        -webkit-animation-timing-function:ease-in-out;
+    }
+    38.8889% {
+        -webkit-transform: translate3d(174px, 102px, 0px) scale3d(0.8, 0.8, 1);
+        opacity: 0.9;
+        -webkit-animation-timing-function:ease-in-out;
+    }
+    100% {
+        -webkit-transform: translate3d(148px, 102px, 0px) scale3d(1, 1, 1);
+        opacity: 0;
+        -webkit-animation-timing-function:ease-in-out;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-6 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-6-0;    
+  -webkit-animation-duration: 5.1429s;    
+  -webkit-animation-delay: 8s;    
+  -webkit-animation-fill-mode: both;    
+}
+.t-0 #pqEBjyKkd-an-obj-6 {
+    -webkit-transform: translate3d(148px, 102px, 0px) scale3d(1, 1, 1);
+    opacity: 0;
+    -webkit-animation-timing-function:ease-in-out;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-6 {
+    -webkit-transform: translate3d(174px, 72px, 0px) scale3d(0.8, 0.8, 1);
+    opacity: 0;
+    -webkit-animation-timing-function:ease-in-out;
+
+}
+.restart #pqEBjyKkd-an-obj-6 {    
+  -webkit-animation-name: none !important;    
+}
+#pqEBjyKkd-an-obj-7 {
+    -webkit-transform: translate3d(0px, 12px, 0px);
+    width: 500px;
+    height: 750px;
+    top:0; left:0;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-7-0 {
+    0% {
+        -webkit-transform: translate3d(0px, 99px, 0px) scale3d(1, 0.48, 1);
+        opacity: 0;
+        -webkit-animation-timing-function:linear;
+    }
+    39.5718% {
+        -webkit-transform: translate3d(0px, 12px, 0px) scale3d(1, 1, 1);
+        opacity: 1;
+        -webkit-animation-timing-function:ease;
+    }
+    69.4652% {
+        -webkit-transform: translate3d(0px, 12px, 0px) scale3d(1.2, 0.9, 1);
+        opacity: 1;
+        -webkit-animation-timing-function:ease;
+    }
+    100% {
+        -webkit-transform: translate3d(0px, 12px, 0px) scale3d(1, 1, 1);
+        opacity: 1;
+        -webkit-animation-timing-function:ease;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-7 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-7-0;    
+  -webkit-animation-duration: 20.2615s;    
+  -webkit-animation-delay: 0s;    
+  -webkit-animation-fill-mode: both;    
+}
+.t-0 #pqEBjyKkd-an-obj-7 {
+    -webkit-transform: translate3d(0px, 12px, 0px) scale3d(1, 1, 1);
+    opacity: 1;
+    -webkit-animation-timing-function:ease;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-7 {
+    -webkit-transform: translate3d(0px, 99px, 0px) scale3d(1, 0.48, 1);
+    opacity: 0;
+    -webkit-animation-timing-function:linear;
+
+}
+.restart #pqEBjyKkd-an-obj-7 {    
+  -webkit-animation-name: none !important;    
+}
+#pqEBjyKkd-an-obj-8 {
+    -webkit-transform: translate3d(0px, 185px, 0px) scale3d(1.15, 1.15, 1);
+    width: 500px;
+    height: 750px;
+    top:0; left:0;
+    -webkit-animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-8-0 {
+    0% {
+        -webkit-transform: translate3d(0px, 185px, 0px) scale3d(1.15, 1.15, 1);
+        opacity: 0;
+        -webkit-animation-timing-function:linear;
+    }
+    42.6829% {
+        -webkit-transform: translate3d(0px, 185px, 0px) scale3d(1.15, 1.15, 1);
+        opacity: 1;
+        -webkit-animation-timing-function:linear;
+    }
+    100% {
+        -webkit-transform: translate3d(0px, 185px, 0px) scale3d(1.38, 1.38, 1);
+        opacity: 0;
+        -webkit-animation-timing-function:ease;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-8 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-8-0;    
+  -webkit-animation-duration: 7.5692s;    
+  -webkit-animation-delay: 8.9231s;    
+  -webkit-animation-fill-mode: both;    
+}
+.t-0 #pqEBjyKkd-an-obj-8 {
+    -webkit-transform: translate3d(0px, 185px, 0px) scale3d(1.38, 1.38, 1);
+    opacity: 0;
+    -webkit-animation-timing-function:ease;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-8 {
+    -webkit-transform: translate3d(0px, 185px, 0px) scale3d(1.15, 1.15, 1);
+    opacity: 0;
+    -webkit-animation-timing-function:linear;
+
+}
+.restart #pqEBjyKkd-an-obj-8 {    
+  -webkit-animation-name: none !important;    
+}
+#pqEBjyKkd-an-obj-9 {
+    -webkit-transform: translate3d(-16px, -7px, 0px) scale3d(0.9, 0.9, 1);
+    width: 307px;
+    height: 172px;
+    top:0; left:0;
+}
+
+@-webkit-keyframes ani-pqEBjyKkd-an-obj-9-0 {
+    0% {
+        -webkit-transform: translate3d(-16px, -7px, 0px) scale3d(0.9, 0.9, 1);
+        -webkit-animation-timing-function:linear;
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(-16px, -7px, 0px) scale3d(0.9, 0.9, 1);
+        -webkit-animation-timing-function:linear;
+        opacity: 1;
+    }
+}
+.run.t-0 #pqEBjyKkd-an-obj-9 {    
+  -webkit-animation-name: ani-pqEBjyKkd-an-obj-9-0;    
+  -webkit-animation-duration: 3.1538s;    
+  -webkit-animation-delay: 14.3077s;    
+  -webkit-animation-fill-mode: both;    
+}
+
+.t-0 #pqEBjyKkd-an-obj-9 {
+    -webkit-transform: translate3d(-16px, -7px, 0px) scale3d(0.9, 0.9, 1);
+    -webkit-animation-timing-function:linear;
+    opacity: 1;
+
+}
+.restart.t-0 #pqEBjyKkd-an-obj-9 {
+    -webkit-transform: translate3d(-16px, -7px, 0px) scale3d(0.9, 0.9, 1);
+    -webkit-animation-timing-function:linear;
+    opacity: 0;
+
+}
+.restart #pqEBjyKkd-an-obj-9 {    
+  -webkit-animation-name: none !important;    
+}
+</style>
+<script>
+            function init()
+            {
+                document.body.style.margin = '0px';
+                create_base();
+                read_base();
+                create_music();
+                setTimeout('showTxt()',13000);
+            }
+            function showTxt()
+            {
+                 create_textdiv();
+                 create_modify();
+            }
+</script>
+
+<script>
+            kawa_data = {
+                words : '中秋的月亮，在窗外静静地静静地悬挂着。我楞楞地看着它，仿佛它就是那一面明镜，你我在互相注视，互致绵绵思意与深深祝福：<br>心上人中秋快乐!',
+                replace_words      : '#replace_words#',
+                text_box           : '50 230 440 200', // 左 上 宽 高，空格分隔，只写数字，单位强制为px
+                //text_align         : 'center',
+                font_weight        : 'bold',
+                mode               : 'up',     // up, left
+                speed              : 40,     // 每秒移动的像素
+                text_color         : '#1F0F0A',
+                font_size          : '20pt',
+                line_height        : '40pt',
+                font_weight        : 'normal',
+                music              : 'http://flash.flashline.cn/kxqq/heka/zhongqiu5.mp3',
+                replace_music      : '#replace_music#',
+                music_name         : '',
+                replace_music_name : '#replace_music_name#',
+                title              : 'title',
+                desc               : 'desc',
+                modify             : 'no',
+                replace_modify     : 'yes',
+                cardid             : '9363',
+                share_url          : '#share_url#',  // 当分享的是微信页面时才需要改这里
+                font_ip            : '115.28.135.41:8000',
+                modify_optfile     : 'zhongqiu',
+                show_words         : 'yes',
+            };
+        </script>
+<style></style><style></style><style></style></head>
+	<body style="margin:0; height: 100%;" onload="init();">
+<div id="pqEBjyKkd-an-anim"><ol>
+<li id="pqEBjyKkd-an-scene-0" class="run t-0">
+<div class="pqEBjyKkd-an-stage">
+<div id="pqEBjyKkd-an-obj-1"><div><img height="900" width="734" src="images/festival/9363_1.jpg"></div></div>
+<div id="pqEBjyKkd-an-obj-2"><div><img height="430" width="550" src="images/festival/9364_12.png"></div></div>
+<div id="pqEBjyKkd-an-obj-3"><div><img height="400" width="640" src="images/festival/9363_2.jpg"></div></div>
+<div id="pqEBjyKkd-an-obj-4"><div><img height="56" width="640" src="images/festival/9363_2.png"></div></div>
+<div id="pqEBjyKkd-an-obj-5"><div><img height="379" width="180" src="images/festival/9363_3.png"></div></div>
+<div id="pqEBjyKkd-an-obj-6"><div><img height="424" width="180" src="images/festival/9363_4.png"></div></div>
+<div id="pqEBjyKkd-an-obj-7"><div><img height="750" width="500" src="images/festival/9364_4.png"></div></div>
+<div id="pqEBjyKkd-an-obj-8"><div><img height="750" width="500" src="images/festival/guang.png"></div></div>
+<div id="pqEBjyKkd-an-obj-9"><div><img height="172" width="307" src="images/festival/9363_5.png"></div></div>
+</div>
+</li>
+
+</ol></div>
+
+<div id="basepoint" style="position: fixed; bottom: 0px; width: 1px; height: 1px; left: -100px;"></div><div id="cardsound" style="position: fixed; right: 20px; top: 25px; z-index: 50000; visibility: visible;"><img id="sound_image" src="images/festival/music_note_big.png" style="animation: rotatemusic 4s linear infinite;"><div id="note_box" style="height:100px;width:44px;position:absolute;left:0px;top:-80px"></div><div id="music_txt" style="color:white;position:absolute;left:-40px;top:30px;width:60px"></div></div><div id="textmask" style="position: absolute; left: 50px; top: 230px; width: 440px; height: 200px; overflow: hidden; -webkit-mask-image: url(&quot;images/festival/shu.png&quot;); -webkit-mask-size: contain; z-index: 10000;"><div id="textdiv" style="position: absolute; color: rgb(31, 15, 10); font-size: 20pt; line-height: 40pt; font-weight: normal; font-family: &quot;Microsoft YaHei&quot;; z-index: 50000; animation: textdivani 12.95s linear infinite; height: 318px;"></div></div></body></html>
